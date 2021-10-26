@@ -3,4 +3,4 @@ project(Prototype)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Prototype main.cpp ConcretePrototype1 ConcretePrototype2.cpp ConcretePrototype2.h)
+add_executable(Prototype main.cpp ConcretePrototype1.cpp ConcretePrototype2.cpp)
