@@ -5,11 +5,12 @@
 #ifndef PROTOTYPE_PROTOTYPE_H
 #define PROTOTYPE_PROTOTYPE_H
 #include "string"
-
+#include "memory"
 
 class Prototype {
 public:
-    virtual Prototype * clone() = 0;
+    explicit Prototype() = default;
+    virtual std::shared_ptr<Prototype> clone() = 0;
     virtual ~Prototype() = default;
     virtual std::string getData() = 0;
     virtual void setData(std::string newData) = 0;

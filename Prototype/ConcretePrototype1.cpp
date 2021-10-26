@@ -4,8 +4,11 @@
 
 #include "ConcretePrototype1.h"
 
-Prototype * ConcretePrototype1::clone() {
-    return new ConcretePrototype1{*this};
+std::shared_ptr<Prototype> ConcretePrototype1::clone() {
+    std::cout<<"-----------"<<std::endl;
+//    copy when copy ctor private
+//    return std::make_shared<ConcretePrototype1>(ConcretePrototype1(*this));
+    return std::shared_ptr<ConcretePrototype1>(new ConcretePrototype1(*this));
 }
 
 std::string ConcretePrototype1::getData() {
