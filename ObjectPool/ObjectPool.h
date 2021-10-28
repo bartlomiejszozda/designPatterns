@@ -14,9 +14,9 @@ using SharedObject_Ptr = std::shared_ptr<SharedObject>;
 class ObjectPool {
 private:
     std::vector<SharedObject_Ptr> objectPool;
-    SharedObject_Ptr& emplaceNewObject(const std::string descr);
+    SharedObject_Ptr& emplaceNewObject();
 public:
-    SharedObject_Ptr acquireObject(const std::string& descr);
+    SharedObject_Ptr acquireObject();
     bool releaseObject(SharedObject_Ptr&);
 };
 

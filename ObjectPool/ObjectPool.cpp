@@ -4,13 +4,13 @@
 
 #include "ObjectPool.h"
 
-SharedObject_Ptr ObjectPool::acquireObject(const std::string& descr) {
+SharedObject_Ptr ObjectPool::acquireObject() {
     for (auto& so_ptr : objectPool){
             if ( so_ptr.use_count() == 1 ){
                 return so_ptr;
             }
     }
-    return emplaceNewObject(descr);
+    return emplaceNewObject();
 }
 
 bool ObjectPool::releaseObject(SharedObject_Ptr& so_ptr) {
@@ -24,13 +24,12 @@ bool ObjectPool::releaseObject(SharedObject_Ptr& so_ptr) {
         if (iter->use_count() != 1){
             std::cout<<"WARNING count should be 1"<<iter->use_count()<<std::endl;
         }
-        std::cout<<"object released properly"<<std::endl;
     }
     else
-        std::cout<<"object NOT released properly"<<std::endl;
+        std::cout<<"WARNING object NOT released properly"<<std::endl;
         return false;
 }
 
-SharedObject_Ptr& ObjectPool::emplaceNewObject(const std::string descr) {
-    return objectPool.emplace_back(std::make_shared<SharedObject>(descr));
+SharedObject_Ptr& ObjectPool::emplaceNewObject() {
+    return objectPool.emplace_back(std::make_shared<SharedObject>());
 }
