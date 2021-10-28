@@ -10,13 +10,11 @@
 #include <algorithm>
 #include "SharedObject.h"
 using SharedObject_Ptr = std::shared_ptr<SharedObject>;
-using SharedObject_Pair = std::pair<bool, std::shared_ptr<SharedObject>>;
 
 class ObjectPool {
 private:
-    std::vector<SharedObject_Pair> objectPool;
-    bool objectIsUsed(const SharedObject_Pair& sop);
-    SharedObject_Pair& emplaceNewObject(const std::string descr);
+    std::vector<SharedObject_Ptr> objectPool;
+    SharedObject_Ptr& emplaceNewObject(const std::string descr);
 public:
     SharedObject_Ptr acquireObject(const std::string& descr);
     bool releaseObject(SharedObject_Ptr&);
